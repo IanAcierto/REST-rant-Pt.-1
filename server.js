@@ -22,7 +22,7 @@ app.use('/places', require('./controllers/places'))
 
 //404
 app.get('*', (req,res) =>{
-  res.status(404).render('error404')
+  res.status(404).render('error404/error404')
 })
 
 //LISTEN
