@@ -2,7 +2,7 @@ const React = require('react');
 const Def = require('../default');
 
 function index(data){
-  let placesFormatted = dat.places.map((place) =>{
+  let placesFormatted = data.places.map((place) =>{
     return(
       <div>
         <h2>{place.name}</h2>

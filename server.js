@@ -5,18 +5,21 @@ const express = require('express');
 require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
-app.set('views', __dirname + '/views');
-app.set('veiw engine', 'html')
-app.engine('jsx', require('express-react-views').createEngine())
 
-//PLACES??
-app.use('/places', require('./controllers/places'))
+//middleware 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
 
 //ROUTES
 app.get('/', (req, res) => {
-  res.render('home')
+  res.render('home/home')
 })
 
+//controllers
+app.use('/places', require('./controllers/places'))
+
+//404
 app.get('*', (req,res) =>{
   res.status(404).render('error404')
 })
