@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const router = require('express').Router()
+const router = require('express').Router() 
 const places = require('../models/places')
 
 router.get('/',(req, res) => {  
@@ -24,7 +24,10 @@ router.post('/',(req, res) =>{
 router.get('/new', (req, res)=>{
   res.render('places/new')  
 })
-router.get(':id', (req, res)=>{
+router.get('/:id', (req, res)=>{
   res.send('router index array')
+})
+router.get('/show', (req, res)=>{{
+  res.render()
 })
 module.exports = router
