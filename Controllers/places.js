@@ -6,6 +6,8 @@ const places = require('../models/places')
 router.get('/',(req, res) => {  
   res.render('places/index', {places})
 })
+
+//PLACES ROUTE
 router.post('/',(req, res) =>{
   console.log(req.body)
   {/*default pic and state */}
@@ -24,6 +26,8 @@ router.post('/',(req, res) =>{
 router.get('/new', (req, res)=>{
   res.render('places/new')  
 })
+
+//SHOW/id ROUTE
 router.get('/:id', (req, res) => {
   let id = Number(req.params.id)
   if (isNaN(id)) {
@@ -33,11 +37,26 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else {
-    res.render('places/show', { place: places[id] })
+    res.render('places/show', { place: places[id], id })
+  }
+})
+//delete
+router.delete('/places/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    res.send('STUB DELETE places/:id')
+    res.redirect('/places')
   }
 })
 
 router.get('/show', (req, res)=>{
   res.render('places/show')
 })
+
 module.exports = router
