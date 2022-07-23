@@ -11,3 +11,7 @@ let places = [{
   cuisines: 'Coffee, Bakery',
   pic: '/images/hwaro.jpg'
 }]
+
+module.exports = {
+  places 
+}

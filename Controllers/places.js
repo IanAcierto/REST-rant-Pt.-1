@@ -1,7 +1,7 @@
 const { Router } = require('express')
 
 const router = require('express').Router() 
-const places = require('../models/places')
+const {places} = require('../models/places')
 
 router.get('/',(req, res) => {  
   res.render('places/index', {places})
@@ -23,23 +23,29 @@ router.post('/',(req, res) =>{
   places.push(req.body)
   res.redirect('places')
 })
+
 router.get('/new', (req, res)=>{
   res.render('places/new')  
 })
 
-//SHOW/id ROUTE
+//id ROUTE
 router.get('/:id', (req, res) => {
   let id = Number(req.params.id)
   if (isNaN(id)) {
-    res.render('error404')
+    res.render('error404/error404')
   }
   else if (!places[id]) {
-    res.render('error404')
+    res.render('error404/error404')
   }
   else {
     res.render('places/show', { place: places[id], id })
   }
 })
+
+router.get('/show', (req, res)=>{
+  res.render('/show')
+}) 
+
 //delete
 router.delete('/places/:id', (req, res) => {
   let id = Number(req.params.id)
@@ -50,13 +56,20 @@ router.delete('/places/:id', (req, res) => {
     res.render('error404')
   }
   else {
+    places.splice(id, 1)
     res.send('STUB DELETE places/:id')
     res.redirect('/places')
   }
 })
 
-router.get('/show', (req, res)=>{
-  res.render('places/show')
+router.get('/:id/edit', (req, res) =>{
+  let id = Number(req.params.id)
+  if(isNaN(id)){
+    res.render('error404/error404');
+  }
+  else if(!places[id]){
+    res.render('error404/error404')
+  }
+  res.render('places/edit', {place: places[id], id})
 })
-
 module.exports = router

@@ -6,6 +6,7 @@ function show (data) {
         <Def>
           <main>
             <h1>{ data.place.name }</h1>
+            <img src= {data.place.pic}/>
             <div>Ratings</div>
             <div>Comments</div>
             <a href={`/places/${data.id}/edit`} className="btn btn-warning"> 

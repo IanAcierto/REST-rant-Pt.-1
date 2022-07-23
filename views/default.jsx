@@ -11,7 +11,7 @@ function Def(html){
       <body>
         <nav>
           <ul>
-              <li><a href="./"></a>HOME</li>
+              <li><a href='/'>HOME</a></li>
               <li><a href='/places'>PLACES</a></li>
               <li><a href='/places/new'>NEW</a></li> 
           </ul>
