@@ -4,7 +4,6 @@ const Place = require('../models/places')
 const db = require('../models')
 
 router.get('/', (req, res) => {
-  console.log(Place, Place.find({}))
   db.Place.find({})
   .then(places=>{
     console.log('function log', places, 'endlog')
@@ -22,8 +21,16 @@ router.post('/', (req, res) => {
     res.redirect('/places')
   })
   .catch(err =>{
-    console.log(err)
-    res.render('error404/error404')
+    if(err&&err.name == 'ValidationError'){
+      console.log(err, err.name)
+      let message = 'ValidationError':
+      for (var field in err.errors){
+        message += `${field} was ${err.errors[field].value}.`
+        message += `${field} was ${err.errors[field].message}`
+      }
+      console.log('validation error message', message)
+    }
+    else{res.render('error404/error404')}
   })
 })
 
