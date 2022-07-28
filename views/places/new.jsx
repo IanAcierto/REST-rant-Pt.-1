@@ -30,6 +30,10 @@ function new_form(){
             <input id="name" name="name" required></input>
           </div>
           <div className="form-group">
+            <label for="founded">Founded Year</label>
+            <input className="form-control" id="founded" name="founded" />
+          </div>
+          <div className="form-group">
             <label htmlFor="pic">Picture</label>
             <input id="pic" name="pic"></input>
           </div>
